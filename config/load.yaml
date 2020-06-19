@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seeder
+  namespace: default
+  labels:
+    app: seeder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seeder
+  template:
+    metadata:
+      labels:
+        app: seeder
+    spec:
+      containers:
+        - name: seeder
+          image: ko://github.com/capri-xiyue/ce-test-actor/cmd/topic-seeder
+          env:
+            - name: TARGET
+              value: http://cre-test-topic-publish.default.svc.cluster.local
+            - name: INTERVAL
+              value: "1s"
+            - name: CONCURRENCY
+              value: "10000"
