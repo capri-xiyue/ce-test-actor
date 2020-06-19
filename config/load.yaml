@@ -19,9 +19,9 @@ spec:
         - name: seeder
           image: ko://github.com/capri-xiyue/ce-test-actor/cmd/topic-seeder
           env:
-            - name: TARGET
-              value: http://cre-test-topic-publish.default.svc.cluster.local
             - name: INTERVAL
               value: "1s"
             - name: CONCURRENCY
               value: "10000"
+            - name: TOPIC_ID
+              value: "test-topic"
